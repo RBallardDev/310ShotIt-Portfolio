@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let rollSequence = shuffleArray([...Array(10).keys(), ...Array(10).keys()]); // Array of 0-9 twice
 
         let rollIndex = 0;
-        imageElement.style.transition = 'opacity 0.5s linear';
+        imageElement.style.transition = 'opacity 1.5s linear';
         imageElement.style.opacity = 0;
 
         const newImage = getNextImage(images, currentImage); // Pre-select new image
@@ -59,10 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function repeatRolling() {
-        startRolling();
-        setInterval(() => {
+        setTimeout(() => {
             startRolling();
-        }, 15000); // Every 15 seconds
+            setInterval(() => {
+                startRolling();
+            }, 15000); // Every 15 seconds
+        }, 15000); // Initial delay of 15 seconds
     }
 
     repeatRolling();
