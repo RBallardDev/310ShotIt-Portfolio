@@ -24,15 +24,17 @@ document.addEventListener('DOMContentLoaded', () => {
         return shuffledImages[0];
     }
 
-    function rollNumberAndImage(numberElement, imageElement, originalNumber, imageFolder, images) {
+    function rollNumberAndImage(numberElement, imageElement, fadeImageElement, originalNumber, imageFolder, images) {
         let currentImage = imageElement.src.split('/').pop();
         let rollSequence = shuffleArray([...Array(10).keys(), ...Array(10).keys()]); // Array of 0-9 twice
 
         let rollIndex = 0;
         imageElement.style.transition = 'opacity 0.5s linear';
-        imageElement.style.opacity = 0;
+        fadeImageElement.style.transition = 'opacity 0.5s linear';
+        fadeImageElement.style.opacity = 0;
 
         const newImage = getNextImage(images, currentImage); // Pre-select new image
+        fadeImageElement.src = `${imageFolder}/${newImage}`; // Set the new image src
 
         let rollInterval = setInterval(() => {
             numberElement.textContent = rollSequence[rollIndex];
@@ -45,17 +47,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(() => {
             imageElement.style.opacity = 0;
+            fadeImageElement.style.opacity = 1;
             setTimeout(() => {
-                imageElement.src = `${imageFolder}/${newImage}`; // Change the image source to the new image
-                imageElement.style.opacity = 1;
+                imageElement.src = fadeImageElement.src; // Update the original image src
+                imageElement.style.opacity = 1; // Reset opacity
+                fadeImageElement.style.opacity = 0; // Hide fade image
             }, 500); // Ensure this matches the fade-out duration
         }, rollSequence.length * 100 - 500); // Start fade-out after rolling
     }
 
     function startRolling() {
-        rollNumberAndImage(leftNumber, leftItem.querySelector('.home-img'), 3, 'images/left', leftImages);
-        rollNumberAndImage(rightNumber, rightItem.querySelector('.home-img'), 0, 'images/right', rightImages);
-        rollNumberAndImage(middleNumber, middleItem.querySelector('.home-img'), 1, 'images/middle', middleImages);
+        rollNumberAndImage(leftNumber, leftItem.querySelector('.home-img:not(.fade-img)'), leftItem.querySelector('.fade-img'), 3, 'images/left', leftImages);
+        rollNumberAndImage(rightNumber, rightItem.querySelector('.home-img:not(.fade-img)'), rightItem.querySelector('.fade-img'), 0, 'images/right', rightImages);
+        rollNumberAndImage(middleNumber, middleItem.querySelector('.home-img:not(.fade-img)'), middleItem.querySelector('.fade-img'), 1, 'images/middle', middleImages);
     }
 
     function repeatRolling() {
