@@ -149,6 +149,26 @@ main {
 
 .about-section {
     text-align: center;
+    padding: 60px 20px;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-text {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 20px;
+}
+
+.about-text p {
+    width: 45%;
+    text-align: center;
 }
 
 .about-images {
