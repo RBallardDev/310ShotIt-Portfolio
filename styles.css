@@ -74,6 +74,33 @@ main {
     padding: 60px 20px;
 }
 
+.hidden {
+    opacity: 0;
+    transition: all 1s ease-in-out;
+}
+
+.show {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+}
+
+.left.hidden {
+    transform: translateX(-100%);
+}
+
+.left.show {
+    transform: translateX(0);
+}
+
+.right.hidden {
+    transform: translateX(100%);
+}
+
+.right.show {
+    transform: translateX(0);
+}
+
 .home-container {
     display: flex;
     justify-content: center;
@@ -120,8 +147,11 @@ main {
 }
 
 .shotit {
+    position: absolute;
+    bottom: 80px;
+    text-align: center;
+    width: 100%;
     font-size: 36px;
-    margin-top: -40px;
 }
 
 .name {
@@ -178,17 +208,9 @@ main {
     margin: 20px 0;
 }
 
-.about-img {
-    width: 600px;
-    height: 400px;
+.hidden-image {
+    width: 600px; /* Adjusted size */
+    height: 400px; /* Adjusted size */
     object-fit: cover;
-    transition: transform 0.5s ease-in-out;
-}
-
-.delayed-img {
-    transition-delay: 0.3s;
-}
-
-.about-img:hover {
-    transform: scale(1.05);
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out;
 }

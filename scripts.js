@@ -76,3 +76,35 @@ function scrollToSection(sectionId) {
         behavior: 'smooth'
     });
 }
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+            } else {
+                entry.target.classList.remove('show');
+            }
+        });
+    });
+
+    const hiddenElements = document.querySelectorAll('.hidden');
+    hiddenElements.forEach((el) => observer.observe(el));
+});
+
+function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    section.scrollIntoView({
+        behavior: 'smooth'
+    });
+
+    if (sectionId === 'about') {
+        const hiddenElements = section.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => el.classList.add('show'));
+    } else {
+        const hiddenElements = section.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => el.classList.remove('show'));
+
+    }
+}
