@@ -77,7 +77,6 @@ function scrollToSection(sectionId) {
     });
 }
 
-
 document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -91,25 +90,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const hiddenElements = document.querySelectorAll('.hidden');
     hiddenElements.forEach((el) => observer.observe(el));
-
-    // Set initial active section
-    document.getElementById('home').classList.add('active');
 });
-
-function scrollToSection(sectionId) {
-    const sections = document.querySelectorAll('section');
-    sections.forEach(section => {
-        section.classList.remove('active');
-    });
-
-    const section = document.getElementById(sectionId);
-    section.classList.add('active');
-    section.scrollIntoView({
-        behavior: 'smooth'
-    });
-
-    if (sectionId === 'about') {
-        const hiddenElements = section.querySelectorAll('.hidden');
-        hiddenElements.forEach((el) => el.classList.add('show'));
-    }
-}

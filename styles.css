@@ -10,7 +10,6 @@ header, .about-bar {
     color: white;
     padding: 10px 0;
     width: 100%;
-    top: 0;
     z-index: 1000;
 }
 
@@ -44,18 +43,22 @@ header nav ul li button:hover {
 }
 
 .about-bar {
-    position: absolute;
-    top: calc(100vh + 10px); /* Adjust spacing below the home section */
+    position: relative;
+    margin-top: 0px; /* Adjust spacing below the home section */
     text-align: center;
 }
-
+.about-bar {
+    position: relative;
+    margin-top: -20px; /* Adjust spacing below the home section */
+    text-align: center;
+}
 .about-bar h2 {
     margin: 0;
     font-size: 2vw;
 }
 
 main {
-    padding-top: 60px; /* Adjust for fixed header height */
+    padding-top: 40px; /* Adjust for fixed header height */
 }
 
 section {
@@ -96,7 +99,7 @@ section {
 .home-container {
     display: flex;
     justify-content: center;
-    gap: 10px; /* Add space between images */
+    gap: 20px; /* Add space between images */
     max-width: 100%; /* Ensure container takes full width */
     margin: 0 auto; /* Center the container */
     padding: 0 5%; /* Add padding to bring images closer to the border */
@@ -115,7 +118,7 @@ section {
 .home-item img,
 .about-images img {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
     transition: transform 1s ease-in-out, opacity 1s ease-in-out;
     display: block; /* Ensures no extra space around the image */
@@ -201,9 +204,7 @@ section {
 
 /* Media Queries for responsiveness */
 @media (max-width: 1024px) {
-    .home-container {
-        padding: 0 5px; /* Add padding to the container */
-    }
+    
 
     .home-item {
         max-width: calc(33.333% - 10px); /* Ensure items stay in a row */
@@ -223,9 +224,7 @@ section {
 }
 
 @media (max-width: 600px) {
-    .home-container {
-        padding: 0 2px; /* Add padding to the container */
-    }
+    
 
     .home-item {
         max-width: calc(33.333% - 4px); /* Ensure items stay in a row */
